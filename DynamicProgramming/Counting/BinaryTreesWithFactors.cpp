@@ -20,35 +20,36 @@ using namespace std;
 const int mx = 1010;
 vector<int> v;  
 int n, mod = 1e9 + 7;
-unordered_map<int, ll> arr[mx];
+unordered_set<int> s;
+unordered_map<int, ll> arr;
 class Solution {
 public:
     int numFactoredBinaryTrees(vector<int>& nums) {
-        // No initialization needed for unordered_map
-        v = nums;
-        n = v.size();
-        int cnt = 0;
-        for(int i = 0 ; i < n ; i++){
-            cnt = (cnt % mod + dp(0,v[i])%mod)%mod;
+        s.clear();
+        arr.clear();
+        for (auto x : nums) {
+            s.insert(x);
         }
-        return cnt;
+
+        int sum = 0;
+        for(auto i : s){
+            sum += cnt(i);
+            sum%= mod;
+        }
+        return sum;
     }
-    
-    int dp(int idx , int target){
-        if(target == 0) return 1;
-        if(target < 0) return 0;
-
-        // Check if key exists
-        if(arr[idx].count(target)) {
-            return arr[idx][target];
+    int cnt(int node){
+        if(arr.count(node)) return arr[node];
+        if(s.count(node) == 0) return 0;
+        ll cn = 1;
+        for(auto i : s){
+            if(node % i == 0 && s.count(node/i)){  // Check if node/i exists in set
+                ll left = cnt(i);
+                ll right = cnt(node/i);
+                cn = (cn + (left * right) % mod) % mod;
+            }
         }
-
-        int cnt = 0;
-        for(int i = 0 ; i < n ; i++){
-            cnt += dp( i + 1 , target - v[i]);
-        }
-        cnt%=mod;
-        return arr[idx][target] = cnt;
+        return arr[node] = cn;
     }
 };
 
