@@ -58,7 +58,7 @@ int main()
     file;
     Solution sol;
     string s = "cbbd";
-vector<vector<int>> V = {{2,1,3},{6,5,4},{7,8,9}};
+    vector<vector<int>> V = {{2,3,3},{6,1,4},{7,8,9}};
     cout << sol.minFallingPathSum(V) << line;
 
     return 0;
