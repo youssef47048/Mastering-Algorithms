@@ -3,7 +3,7 @@
         {
             "type": "cppbuild",
             "label": "C/C++: g++.exe build active file",
-            "command": "D:\\Programmer_tools\\CodeBlocks\\MinGW\\bin\\g++.exe",
+            "command": "D:\\programmer_tools\\CodeBlocks\\MinGW\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
                 "-g",
