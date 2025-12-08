@@ -62,5 +62,6 @@ int main()
 
    
     auto v = sol.restoreArray(pairs);
+    for(auto i : v) cout<< i <<" ";
     return 0;
 }
